@@ -37,7 +37,7 @@ jobs:
       uses: aws-actions/configure-aws-credentials@v2
       with:
         role-to-assume: arn:aws:iam::152727848917:role/github-iac-access
-        aws-region: "$AWS_REGION"
+        aws-region: us-east-1
     - name: checkout source code
       uses: actions/checkout@v4
 
