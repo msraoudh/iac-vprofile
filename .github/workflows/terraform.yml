@@ -60,7 +60,7 @@ jobs:
 
     - name: Terraform Plan
       id: plan
-      run: terraform plan -no-color -input=false -out planfile
+      run: terraform plan -var="clusterName=$EKS_CLUSTER"  -no-color -input=false -out planfile
       continue-on-error: true
 
     - name: Terraformplan status
@@ -71,7 +71,7 @@ jobs:
     - name: Terraform Apply
       id: applyTF
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-      run: terraform apply -auto-approve -var="clusterName=$EKS_CLUSTER" -input=false -parallelism=1 planfile
+      run: terraform apply -auto-approve -input=false -parallelism=1 planfile
 
     - name: Get kube oonfig 'failure'
       id: getconfig
